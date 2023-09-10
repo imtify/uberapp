@@ -1,23 +1,34 @@
-import {View, Text, Touchable, FlatList, TouchableOpacity} from 'react-native';
 import React from 'react';
+import {View, Text, TouchableOpacity, FlatList} from 'react-native';
+import {useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useNavigation} from '@react-navigation/native';
+import tw from 'tailwind-react-native-classnames';
 
 const data = [
   {
     id: '123',
     icon: 'work',
     location: 'Office',
-    destination: 'DOHS Baridhara, Dhaka, Bangladesh',
+    destination:
+      'The Delta Group (Dhaka Office), Road Number 6, Dhaka, Bangladesh',
+    lat: 23.8127783,
+    lng: 90.4139617,
   },
   {
     id: '456',
     icon: 'home',
     location: 'Home',
-    destination: 'Pallabi, Dhaka, Bangladesh',
+    destination: 'Rupnagor Police Station, Road Number 4, Dhaka, Bangladesh',
+    lat: 23.8173654,
+    lng: 90.36009659999999,
   },
 ];
 
-const NavFavourites = () => {
+const NavFavourites = ({location, navigate}) => {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
   return (
     <View style={{marginVertical: 16}}>
       <FlatList
@@ -28,19 +39,24 @@ const NavFavourites = () => {
         )}
         renderItem={({item}) => (
           <TouchableOpacity
-            style={{
-              flexDirection: 'row',
-              columnGap: 8,
-              alignItems: 'center',
-              marginVertical: 4,
-              paddingVertical: 12,
-            }}>
+            onPress={() => {
+              dispatch(
+                location({
+                  location: {
+                    lat: item.lat,
+                    lng: item.lng,
+                  },
+                  description: item.destination,
+                }),
+              );
+              navigation.navigate(navigate);
+            }}
+            style={[tw`flex-row items-center w-80 py-3 px-4`, {columnGap: 8}]}>
             <Icon
-              style={{
-                backgroundColor: '#023020',
-                borderRadius: 15,
-                padding: 8,
-              }}
+              style={[
+                tw`bg-green-900 rounded-2xl p-2 mr-2`,
+                {backgroundColor: '#023020'},
+              ]}
               size={24}
               name={item.icon}
               color="white"

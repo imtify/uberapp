@@ -1,13 +1,19 @@
 import MapView, {Marker} from 'react-native-maps';
 import React, {useEffect, useRef} from 'react';
-import {useSelector} from 'react-redux';
-import {selectDestination, selectOrigin} from '../slices/navSlice';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  selectDestination,
+  selectOrigin,
+  setTravelTimeInformation,
+} from '../slices/navSlice';
 import MapViewDirections from 'react-native-maps-directions';
 
 const Map = () => {
   const origin = useSelector(selectOrigin);
   const destination = useSelector(selectDestination);
   const mapRef = useRef(null);
+  const dispatch = useDispatch();
+  const mapApiKey = 'AIzaSyC1WtYykLeqWqpf-IG8eGFFPC4aBYdwnqw';
 
   useEffect(() => {
     if (origin && destination) {
@@ -19,6 +25,20 @@ const Map = () => {
       }, 100);
     }
   }, [origin, destination]);
+
+  useEffect(() => {
+    if (!origin || !destination) return;
+    const getTravelTime = async () => {
+      fetch(
+        `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin.description}&destinations=${destination.description}&key=${mapApiKey}`,
+      )
+        .then(res => res.json())
+        .then(data => {
+          dispatch(setTravelTimeInformation(data.rows[0].elements[0]));
+        });
+    };
+    getTravelTime();
+  }, [origin, destination, mapApiKey]);
 
   return (
     <MapView
@@ -45,7 +65,7 @@ const Map = () => {
           <MapViewDirections
             origin={origin.description}
             destination={destination.description}
-            apikey="AIzaSyBg4DL_QkO3H89vVVdlzlJ7ZrAiGbDmj1w"
+            apikey={mapApiKey}
             strokeWidth={3}
             strokeColor="blue"
           />

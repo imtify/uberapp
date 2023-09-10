@@ -7,6 +7,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
 import SearchBar from '../components/SearchBar';
 import NavFavourites from '../components/NavFavourites';
+import {setOrigin} from '../slices/navSlice';
 
 function HomeScreen() {
   const navigation = useNavigation();
@@ -18,9 +19,13 @@ function HomeScreen() {
           style={{width: 115, height: 40}}
           source={require('../assets/uber.png')}
         />
-        <SearchBar />
+        <SearchBar
+          placeholder={'Your Location'}
+          location={setOrigin}
+          navigate={'MapScreen'}
+        />
         <NavOptions navigation={navigation} />
-        <NavFavourites />
+        <NavFavourites location={setOrigin} navigate={'MapScreen'} />
       </View>
     </SafeAreaView>
   );

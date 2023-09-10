@@ -1,26 +1,52 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
-import {setOrigin, setDestination} from '../slices/navSlice';
-import {useDispatch} from 'react-redux';
+import {setDestination, selectLocation} from '../slices/navSlice';
+import {useDispatch, useSelector} from 'react-redux';
+import Geolocation from '@react-native-community/geolocation';
+import {useNavigation} from '@react-navigation/native';
 
-const SearchBar = () => {
+const SearchBar = ({placeholder, location, navigate}) => {
   const dispatch = useDispatch();
+  const locationx = useSelector(selectLocation);
+  const navigation = useNavigation();
+  const [currentLocation, setCurrentLocation] = useState(null);
+
+  useEffect(() => {
+    Geolocation.getCurrentPosition(
+      position => {
+        setCurrentLocation({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          description: 'Current Location',
+        });
+      },
+      error => {
+        console.log(error);
+      },
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+    );
+  }, []);
 
   return (
     <GooglePlacesAutocomplete
-      placeholder="Your Location"
+      placeholder={placeholder}
+      value={currentLocation?.description || ''}
       onPress={(data, details = null) => {
         dispatch(
-          setOrigin({
+          location({
             location: details.geometry.location,
             description: data.description,
           }),
         );
         dispatch(setDestination(null));
+        // when enter location in SearchBar from HomeScreen didn't navigate to MapScreen directly
+        if (navigate === 'RideOptionsCard') {
+          navigation.navigate(navigate);
+        }
       }}
       fetchDetails={true}
       query={{
-        key: 'AIzaSyBg4DL_QkO3H89vVVdlzlJ7ZrAiGbDmj1w',
+        key: 'AIzaSyC1WtYykLeqWqpf-IG8eGFFPC4aBYdwnqw',
         language: 'en',
       }}
       enablePoweredByContainer={false}

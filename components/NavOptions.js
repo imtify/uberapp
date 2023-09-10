@@ -4,6 +4,7 @@ import tw from 'tailwind-react-native-classnames';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useSelector} from 'react-redux';
 import {selectOrigin} from '../slices/navSlice';
+import {useNavigation} from '@react-navigation/native';
 
 const data = [
   {
@@ -20,7 +21,8 @@ const data = [
   },
 ];
 
-const NavOptions = ({navigation}) => {
+const NavOptions = () => {
+  const navigation = useNavigation();
   const origin = useSelector(selectOrigin);
   return (
     <View>
@@ -33,14 +35,7 @@ const NavOptions = ({navigation}) => {
             style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 mt-8 w-40`}
             disabled={!origin}>
             <View style={{opacity: !origin ? 0.3 : 1}}>
-              <Image
-                style={{
-                  width: 120,
-                  height: 120,
-                  resizeMode: 'contain',
-                }}
-                source={{uri: item.image}}
-              />
+              <Image style={tw`w-32 h-28 mx-auto`} source={{uri: item.image}} />
               <Text style={tw`mt-2 text-lg font-semibold`}>{item.title}</Text>
               <Icon
                 style={tw`p-1 bg-black rounded-full w-8 mt-4`}
