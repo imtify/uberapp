@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
-import {setDestination, selectLocation} from '../slices/navSlice';
-import {useDispatch, useSelector} from 'react-redux';
+import {setDestination} from '../slices/navSlice';
+import {useDispatch} from 'react-redux';
 import Geolocation from '@react-native-community/geolocation';
 import {useNavigation} from '@react-navigation/native';
 
 const SearchBar = ({placeholder, location, navigate}) => {
   const dispatch = useDispatch();
-  const locationx = useSelector(selectLocation);
   const navigation = useNavigation();
   const [currentLocation, setCurrentLocation] = useState(null);
 
