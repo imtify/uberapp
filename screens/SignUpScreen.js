@@ -13,8 +13,11 @@ export default function SignUpScreen() {
         <View style={tw`flex-row justify-start`}>
           <TouchableOpacity
             onPress={() => navigation.goBack()}
-            style={tw`bg-green-400 p-2 rounded-tr-2xl rounded-bl-2xl ml-4`}>
-            <ArrowLeftIcon size={20} color="black" />
+            style={[
+              tw`p-2 rounded-tr-2xl rounded-bl-2xl ml-4 mt-2`,
+              {backgroundColor: '#023020'},
+            ]}>
+            <ArrowLeftIcon size={20} color="white" />
           </TouchableOpacity>
         </View>
 
@@ -52,20 +55,22 @@ export default function SignUpScreen() {
               placeholder="Enter Password"
             />
 
-            <TouchableOpacity style={tw`py-3 bg-green-400 rounded-xl`}>
-              <Text style={tw`text-xl font-bold text-center text-gray-700`}>
+            <TouchableOpacity
+              style={[tw`py-3 rounded-xl`, {backgroundColor: '#023020'}]}>
+              <Text
+                style={tw`text-xl font-bold text-center text-white opacity-90`}>
                 Sign Up
               </Text>
             </TouchableOpacity>
           </View>
         </View>
 
-        <View style={tw`flex-row justify-center`}>
+        <View style={tw`justify-center items-center`}>
           <Text style={tw`text-black font-semibold`}>
             Already have an account?
           </Text>
           <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
-            <Text style={tw`font-semibold text-green-400`}> Login</Text>
+            <Text style={tw`text-xl font-semibold text-gray-800`}> Login</Text>
           </TouchableOpacity>
         </View>
       </View>
