@@ -37,7 +37,7 @@ const NavigateCard = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={[
-            tw`flex-row items-center bg-green-900 rounded-2xl p-2 w-20`,
+            tw`flex-row items-center rounded-2xl p-2 w-20`,
             {backgroundColor: '#023020'},
           ]}>
           <Icon size={24} name="fastfood" color="white" />
