@@ -7,10 +7,18 @@ import NavigateCard from '../components/NavigateCard';
 import RideOptionsCard from '../components/RideOptionsCard';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
+import {auth} from '../config/firebase';
+import {useSelector} from 'react-redux';
+import {selectCurrentUser} from '../slices/authSlice';
 
 const MapScreen = () => {
   const Stack = createStackNavigator();
   const navigation = useNavigation();
+  const currentUser = useSelector(selectCurrentUser);
+  const user = auth.currentUser;
+  console.log(currentUser);
+  console.log(user);
+
   return (
     <View style={tw`flex-1`}>
       <TouchableOpacity

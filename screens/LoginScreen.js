@@ -14,16 +14,28 @@ import {useNavigation} from '@react-navigation/native';
 import tw from 'tailwind-react-native-classnames';
 import {signInWithEmailAndPassword} from 'firebase/auth';
 import {auth} from '../config/firebase';
+import {useDispatch} from 'react-redux';
+import {setCurrentUser} from '../slices/authSlice';
 
 export default function LoginScreen() {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const dispatch = useDispatch();
 
   const handleSubmit = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
+
+      // After successful login, you can optionally fetch the updated user profile
+      // and update the Redux store if needed.
+
+      const user = auth.currentUser.displayName; // Get the current user
+      dispatch(setCurrentUser(user));
+
+      // You can also navigate to the HomeScreen or perform other actions here
+      // ...
     } catch (error) {
       setError(error.message);
     }

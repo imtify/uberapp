@@ -12,9 +12,12 @@ import {useNavigation} from '@react-navigation/native';
 import tw from 'tailwind-react-native-classnames';
 import {createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import {auth} from '../config/firebase';
+import {useDispatch} from 'react-redux';
+import {setCurrentUser} from '../slices/authSlice';
 
 export default function SignUpScreen() {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,7 +25,10 @@ export default function SignUpScreen() {
   const handleSubmit = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      await updateProfile(auth.currentUser, {displayName: name});
+      await updateProfile(auth.currentUser.displayName, {displayName: name});
+
+      dispatch(setCurrentUser(auth.currentUser.displayName));
+
       navigation.navigate('HomeScreen', {displayName: name});
     } catch (error) {
       console.log(error.message);
@@ -40,7 +46,7 @@ export default function SignUpScreen() {
             />
           </View>
           <View>
-            <Text style={tw`text-black text-2xl font-semibold text-center`}>
+            <Text className="text-black text-2xl font-semibold text-center">
               Sign Up
             </Text>
             <View style={tw`p-4`}>
@@ -82,10 +88,7 @@ export default function SignUpScreen() {
             </Text>
             <TouchableOpacity
               onPress={() => navigation.navigate('LoginScreen')}>
-              <Text style={tw`text-xl font-semibold text-gray-800`}>
-                {' '}
-                Login
-              </Text>
+              <Text style={tw`text-xl font-semibold text-gray-800`}>Login</Text>
             </TouchableOpacity>
           </View>
         </View>
