@@ -3,21 +3,26 @@ import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
 import tw from 'tailwind-react-native-classnames';
+import Animated, {FadeInUp, BounceInRight} from 'react-native-reanimated';
 
 export default function WelcomeScreen() {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={[tw`flex-1`, {backgroundColor: 'white'}]}>
       <View style={tw`flex-1 flex justify-around my-4`}>
-        <Text style={tw`text-black font-bold text-4xl text-center`}>
+        <Animated.Text
+          entering={FadeInUp.duration(1000).springify()}
+          className="text-black font-bold text-4xl text-center">
           Welcome to Uber
-        </Text>
-        <View style={tw`flex-row justify-center`}>
+        </Animated.Text>
+        <Animated.View
+          entering={BounceInRight.delay(200).duration(2000).springify()}
+          style={tw`flex-row justify-center`}>
           <Image
             source={require('../assets/images/Uber.jpg')}
             style={{width: 350, height: 350}}
           />
-        </View>
+        </Animated.View>
         <View>
           <TouchableOpacity
             onPress={() => navigation.navigate('SignUpScreen')}

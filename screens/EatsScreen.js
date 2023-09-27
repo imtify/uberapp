@@ -1,10 +1,12 @@
-import {SafeAreaView, Text} from 'react-native';
+import {SafeAreaView, Text, View} from 'react-native';
 import React from 'react';
 
 const EatsScreen = () => {
   return (
     <SafeAreaView>
-      <Text>Coming Soon...</Text>
+      <View className="justify-center items-center">
+        <Text>Coming Soon...</Text>
+      </View>
     </SafeAreaView>
   );
 };
