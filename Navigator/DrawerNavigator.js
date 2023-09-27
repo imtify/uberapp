@@ -1,3 +1,4 @@
+// DrawerNavigator.js
 import React from 'react';
 import {
   createDrawerNavigator,
@@ -8,6 +9,7 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import HomeScreen from '../screens/HomeScreen';
 import MapScreen from '../screens/MapScreen';
+import BottomTabNavigator from './BottomTabNavigator';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
@@ -33,7 +35,7 @@ const CustomDrawerContent = props => {
       {/* Drawer Header */}
       <View>
         <TouchableOpacity
-          onPress={() => navigation.navigate('HomeScreen')} // Replace 'ProfileScreen' with the screen you want to navigate to when clicking on the user's name
+          onPress={() => navigation.navigate('HomeScreen')}
           style={tw`flex-row items-center p-2`}>
           <Icon name="person" size={28} color="#000000" />
           <Text style={tw`text-base text-black ml-2`}>
@@ -67,9 +69,9 @@ const DrawerNavigator = () => {
     <Drawer.Navigator
       drawerContent={props => <CustomDrawerContent {...props} />}>
       <Drawer.Screen
-        name="HomeScreen"
-        component={HomeScreen}
-        options={{headerShown: false}}
+        name="BottomTabNavigator"
+        component={BottomTabNavigator}
+        options={{headerShown: false}} // You can customize the label if needed
       />
       <Drawer.Screen
         name="MapScreen"

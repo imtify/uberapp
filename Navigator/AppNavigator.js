@@ -12,6 +12,8 @@ import LoginScreen from '../screens/LoginScreen';
 import EatsScreen from '../screens/EatsScreen';
 import useAuth from '../hook/useAuth';
 import DrawerNavigator from './DrawerNavigator';
+import HomeScreen from '../screens/HomeScreen';
+import BottomTabNavigator from './BottomTabNavigator';
 
 const AppNavigator = () => {
   const {user} = useAuth();
@@ -24,7 +26,7 @@ const AppNavigator = () => {
             <StatusBar barStyle="dark-content" backgroundColor={'white'} />
             <Stack.Navigator>
               <Stack.Screen
-                name="Home"
+                name="DrawerNavigator"
                 component={DrawerNavigator} // Use DrawerNavigator as the component for HomeDrawer
                 options={{headerShown: false}}
               />

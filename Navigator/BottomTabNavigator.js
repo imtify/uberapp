@@ -3,6 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import HomeScreen from '../screens/HomeScreen'; // Import your HomeScreen component
 import MapScreen from '../screens/MapScreen'; // Import your MapScreen component
+import EatsScreen from '../screens/EatsScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -10,13 +11,14 @@ const BottomTabNavigator = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="HomeTab"
+        name="HomeScreen"
         component={HomeScreen}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({color, size}) => (
             <Icon name="home" color={color} size={size} />
           ),
+          headerShown: false,
         }}
       />
       <Tab.Screen
@@ -27,9 +29,9 @@ const BottomTabNavigator = () => {
           tabBarIcon: ({color, size}) => (
             <Icon name="map" color={color} size={size} />
           ),
+          headerShown: false,
         }}
       />
-      {/* Add more tabs as needed */}
     </Tab.Navigator>
   );
 };

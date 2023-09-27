@@ -13,9 +13,6 @@ import {selectCurrentUser} from '../slices/authSlice';
 import Animated, {FadeInUp} from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-// Import the BottomTabNavigator component
-import BottomTabNavigator from '../Navigator/BottomTabNavigator';
-
 function HomeScreen() {
   const navigation = useNavigation();
   const currentUser = useSelector(selectCurrentUser);
