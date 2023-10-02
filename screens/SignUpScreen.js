@@ -18,6 +18,7 @@ import Animated, {
   FadeInDown,
   FlipInEasyX,
 } from 'react-native-reanimated';
+import {COLORS} from '../constants/theme';
 
 export default function SignUpScreen() {
   const navigation = useNavigation();
@@ -84,7 +85,10 @@ export default function SignUpScreen() {
               <Animated.View
                 entering={FlipInEasyX.delay(200).duration(2000).springify()}>
                 <TouchableOpacity
-                  style={[tw`py-3 rounded-xl`, {backgroundColor: '#023020'}]}
+                  style={[
+                    tw`py-3 rounded-xl`,
+                    {backgroundColor: COLORS.primary},
+                  ]}
                   onPress={handleSubmit}>
                   <Text style={tw`text-xl font-bold text-center text-white`}>
                     Sign Up

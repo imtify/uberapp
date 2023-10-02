@@ -14,6 +14,8 @@ import useAuth from '../hook/useAuth';
 import DrawerNavigator from './DrawerNavigator';
 import HomeScreen from '../screens/HomeScreen';
 import BottomTabNavigator from './BottomTabNavigator';
+import Settings from '../screens/Settings';
+import Account from '../screens/Account';
 
 const AppNavigator = () => {
   const {user} = useAuth();
@@ -38,6 +40,16 @@ const AppNavigator = () => {
               <Stack.Screen
                 name="EatsScreen"
                 component={EatsScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="Settings"
+                component={Settings}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="Account"
+                component={Account}
                 options={{headerShown: false}}
               />
             </Stack.Navigator>

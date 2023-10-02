@@ -1,9 +1,10 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import HomeScreen from '../screens/HomeScreen'; // Import your HomeScreen component
-import MapScreen from '../screens/MapScreen'; // Import your MapScreen component
-import EatsScreen from '../screens/EatsScreen';
+import HomeScreen from '../screens/HomeScreen';
+import MapScreen from '../screens/MapScreen';
+import {COLORS} from '../constants/theme';
+import Account from '../screens/Account';
 
 const Tab = createBottomTabNavigator();
 
@@ -11,12 +12,12 @@ const BottomTabNavigator = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="HomeScreen"
+        name="HomeTab"
         component={HomeScreen}
         options={{
           tabBarLabel: 'Home',
-          tabBarIcon: ({color, size}) => (
-            <Icon name="home" color={color} size={size} />
+          tabBarIcon: ({focused}) => (
+            <Icon name="home" color={COLORS.primary} size={focused ? 36 : 32} />
           ),
           headerShown: false,
         }}
@@ -25,9 +26,24 @@ const BottomTabNavigator = () => {
         name="MapTab"
         component={MapScreen}
         options={{
-          tabBarLabel: 'Map',
-          tabBarIcon: ({color, size}) => (
-            <Icon name="map" color={color} size={size} />
+          tabBarLabel: 'My Trip',
+          tabBarIcon: ({focused}) => (
+            <Icon name="map" color={COLORS.primary} size={focused ? 36 : 32} />
+          ),
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="AccountTab"
+        component={Account}
+        options={{
+          tabBarLabel: 'Account',
+          tabBarIcon: ({focused}) => (
+            <Icon
+              name="account-circle"
+              color={COLORS.primary}
+              size={focused ? 36 : 32}
+            />
           ),
           headerShown: false,
         }}

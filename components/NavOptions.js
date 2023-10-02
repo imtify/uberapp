@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useSelector} from 'react-redux';
 import {selectOrigin} from '../slices/navSlice';
 import {useNavigation} from '@react-navigation/native';
+import {COLORS} from '../constants/theme';
 
 const data = [
   {
@@ -38,7 +39,10 @@ const NavOptions = () => {
               <Image style={tw`w-32 h-28 mx-auto`} source={{uri: item.image}} />
               <Text style={tw`mt-2 text-lg font-semibold`}>{item.title}</Text>
               <Icon
-                style={tw`p-1 bg-black rounded-full w-8 mt-4`}
+                style={[
+                  tw`p-1 rounded-full w-8 mt-4`,
+                  {backgroundColor: COLORS.primary},
+                ]}
                 size={24}
                 name="arrow-forward"
                 color="white"

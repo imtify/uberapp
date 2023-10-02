@@ -12,6 +12,7 @@ import {setOrigin} from '../slices/navSlice';
 import {selectCurrentUser} from '../slices/authSlice';
 import Animated, {FadeInUp} from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {COLORS} from '../constants/theme';
 
 function HomeScreen() {
   const navigation = useNavigation();
@@ -36,18 +37,20 @@ function HomeScreen() {
             style={{width: 115, height: 40}}
             source={require('../assets/uber.png')}
           />
-          <View className="flex-row">
+          <View className="flex-row space-x-1">
+            <TouchableOpacity
+              onPress={() => {}}
+              style={tw`flex-row rounded-full`}>
+              <Icon
+                name="notifications-none"
+                size={24}
+                color={COLORS.primary}
+              />
+            </TouchableOpacity>
             <TouchableOpacity
               onPress={() => navigation.openDrawer()}
               style={tw`flex-row rounded-full`}>
-              <Text style={tw`text-base text-black pr-1`}>
-                {currentUser ? currentUser : 'User'}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={handleLogout}
-              style={tw`flex-row rounded-full`}>
-              <Icon name="logout" size={28} color="#000000" />
+              <Icon name="menu" size={24} color={COLORS.primary} />
             </TouchableOpacity>
           </View>
         </View>

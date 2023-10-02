@@ -4,6 +4,7 @@ import {useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 import tw from 'tailwind-react-native-classnames';
+import {COLORS} from '../constants/theme';
 
 const data = [
   {
@@ -55,7 +56,7 @@ const NavFavourites = ({location, navigate}) => {
             <Icon
               style={[
                 tw`bg-green-900 rounded-2xl p-2 mr-2`,
-                {backgroundColor: '#023020'},
+                {backgroundColor: COLORS.primary},
               ]}
               size={24}
               name={item.icon}

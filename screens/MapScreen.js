@@ -22,9 +22,9 @@ const MapScreen = () => {
   return (
     <View style={tw`flex-1`}>
       <TouchableOpacity
-        onPress={() => navigation.navigate('HomeScreen')}
+        onPress={() => navigation.navigate('Home')}
         style={tw`absolute top-4 left-4 z-10`}>
-        <Icon name="menu" size={24} color="#023020" />
+        <Icon name="home" size={24} color="#023020" />
       </TouchableOpacity>
       <View style={tw`h-1/2`}>
         <Map />

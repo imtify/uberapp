@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {setDestination} from '../slices/navSlice';
 import SearchBar from './SearchBar';
 import tw from 'tailwind-react-native-classnames';
+import {COLORS} from '../constants/theme';
 
 const NavigateCard = () => {
   const navigation = useNavigation();
@@ -30,7 +31,7 @@ const NavigateCard = () => {
           onPress={() => navigation.navigate('RideOptionsCard')}
           style={[
             tw`flex-row items-center rounded-2xl p-2 w-20`,
-            {backgroundColor: '#023020'},
+            {backgroundColor: COLORS.primary},
           ]}>
           <Icon size={24} name="directions-car" color="white" />
           <Text style={{color: 'white'}}>Rides</Text>
@@ -38,7 +39,7 @@ const NavigateCard = () => {
         <TouchableOpacity
           style={[
             tw`flex-row items-center rounded-2xl p-2 w-20`,
-            {backgroundColor: '#023020'},
+            {backgroundColor: COLORS.primary},
           ]}>
           <Icon size={24} name="fastfood" color="white" />
           <Text style={{color: 'white'}}>Eats</Text>
