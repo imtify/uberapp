@@ -9,6 +9,7 @@ const Account = ({navigation}) => {
     {
       icon: 'settings',
       text: 'Settings',
+      navi: 'Settings',
     },
     {
       icon: 'message',
@@ -33,9 +34,9 @@ const Account = ({navigation}) => {
     },
   ];
 
-  const renderSettingsItem = ({icon, text}) => (
+  const renderSettingsItem = ({icon, text, navi}) => (
     <TouchableOpacity
-      onPress={() => {}}
+      onPress={() => navi && navigation.navigate(navi)}
       style={{
         flex: 1,
         flexDirection: 'row',
@@ -80,12 +81,12 @@ const Account = ({navigation}) => {
           <Icon name="keyboard-arrow-left" size={28} color={COLORS.black} />
         </TouchableOpacity>
       </View>
-
       <View
         style={{
           flexDirection: 'row',
           alignItems: 'center',
           marginHorizontal: 12,
+          paddingHorizontal: 12,
           justifyContent: 'space-between',
           columnGap: 4,
         }}>
@@ -119,7 +120,7 @@ const Account = ({navigation}) => {
           marginVertical: 12,
           columnGap: 8,
         }}>
-        <View
+        <TouchableOpacity
           style={{
             backgroundColor: COLORS.grey,
             padding: 24,
@@ -129,9 +130,8 @@ const Account = ({navigation}) => {
           }}>
           <Icon name="help-center" size={48} color={COLORS.black} />
           <Text style={{fontSize: 16, color: COLORS.black}}>Help</Text>
-        </View>
-
-        <View
+        </TouchableOpacity>
+        <TouchableOpacity
           style={{
             backgroundColor: COLORS.grey,
             padding: 24,
@@ -140,8 +140,8 @@ const Account = ({navigation}) => {
           }}>
           <Icon name="wallet" size={48} color={COLORS.black} />
           <Text style={{fontSize: 16, color: COLORS.black}}>Wallet</Text>
-        </View>
-        <View
+        </TouchableOpacity>
+        <TouchableOpacity
           style={{
             backgroundColor: COLORS.grey,
             padding: 24,
@@ -151,20 +151,23 @@ const Account = ({navigation}) => {
           }}>
           <Icon name="local-activity" size={48} color={COLORS.black} />
           <Text style={{fontSize: 16, color: COLORS.black}}>Activity</Text>
-        </View>
+        </TouchableOpacity>
       </View>
-
       <ScrollView style={{marginHorizontal: 12}}>
         <View>
           <Text></Text>
         </View>
         {/* App Settings */}
-        <View style={{marginBottom: 12}}>
-          <Text style={{...FONTS.h4, marginVertical: 12}}>App Settings</Text>
+        <View
+          style={{
+            paddingVertical: 12,
+            borderTopWidth: 3,
+            borderColor: COLORS.grey,
+          }}>
           <View
             style={{
               borderRadius: 12,
-              backgrounColor: COLORS.gray,
+              backgrounColor: COLORS.grey,
             }}>
             {accountItems.map((item, index) => (
               <React.Fragment key={index}>
